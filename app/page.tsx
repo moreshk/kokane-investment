@@ -59,6 +59,15 @@ export default function Home() {
           At Kokane Investment, we go beyond just transactions. We offer valuable education and training programs on investing and share market trading, empowering you with the knowledge to make informed decisions. Our services also include facilitating IPOs and assisting with the dematerialization (DEMAT) of physical shares, ensuring a seamless transition to modern, electronic trading. Whether you&apos;re a seasoned investor or just starting out, Kokane Investment is your partner in achieving financial success.
         </p>
       </div>
+      <div className="text-center">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">आमच्या सेवा</h2>
+          <p className="text-sm md:text-base text-gray-600 mb-4">
+            २००५ पासून, कोकणे इन्व्हेस्टमेंट हे शेअर बाजारातलं एक विश्वासू नाव आहे. आम्ही तुमच्या सगळ्या गुंतवणुकीच्या गरजा पूर्ण करतो. आम्ही शेअर्स, म्युच्युअल फंड्स आणि इक्विटी डेरिव्हेटिव्हज विकत घेणं आणि विकणं यात तज्ञ आहोत. शिवाय ऑप्शन ट्रेडिंगमध्ये चांगलं मार्गदर्शन देतो. आमचा अनुभवी टीम तुम्हाला पैशाच्या जगात मदत करतो आणि तुमची गुंतवणूक वाढवायला मदत करतो.
+          </p>
+          <p className="text-sm md:text-base text-gray-600 mb-4">
+            कोकणे इन्व्हेस्टमेंटमध्ये, आम्ही फक्त व्यवहार करत नाही. आम्ही गुंतवणूक आणि शेअर बाजारावर शिकवणी आणि ट्रेनिंग देतो, ज्यामुळे तुम्हाला चांगले निर्णय घेता येतील. आम्ही IPO मध्ये मदत करतो आणि physical शेअर्सचं DEMAT करण्यात मदत करतो, जेणेकरून तुम्ही सहज ऑनलाइन ट्रेडिंग करू शकाल. तुम्ही जुने गुंतवणूकदार असा किंवा नवीन असा, पैसे कमवायला कोकणे इन्व्हेस्टमेंट तुमच्या पाठीशी आहे.
+          </p>
+        </div>
     </main>
   );
 }
