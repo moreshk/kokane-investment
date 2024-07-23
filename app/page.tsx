@@ -51,12 +51,12 @@ export default function Home() {
         </div>
       </div>
       <div className="mt-12 max-w-3xl text-center">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-4">Our Services</h2>
+      <h2 className="text-3xl font-semibold text-gray-800 mb-4">Our Services</h2>
         <p className="text-gray-600 mb-4">
           Since 2005, Kokane Investment has been a trusted name in the financial market, offering a comprehensive suite of services to meet all your investment needs. We specialize in buying and selling equities, mutual funds, and equity derivatives, as well as providing expert guidance in option trading. Our team of seasoned professionals is dedicated to helping you navigate the complex world of finance and maximize your investment potential.
         </p>
         <p className="text-gray-600 mb-4">
-          At Kokane Investment, we go beyond just transactions. We offer valuable education and training programs on investing and share market trading, empowering you with the knowledge to make informed decisions. Our services also include facilitating IPOs and assisting with the dematerialization (DEMAT) of physical shares, ensuring a seamless transition to modern, electronic trading. Whether you're a seasoned investor or just starting out, Kokane Investment is your partner in achieving financial success.
+          At Kokane Investment, we go beyond just transactions. We offer valuable education and training programs on investing and share market trading, empowering you with the knowledge to make informed decisions. Our services also include facilitating IPOs and assisting with the dematerialization (DEMAT) of physical shares, ensuring a seamless transition to modern, electronic trading. Whether you&apos;re a seasoned investor or just starting out, Kokane Investment is your partner in achieving financial success.
         </p>
       </div>
     </main>
