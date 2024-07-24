@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-8 text-center">Kokane Investment</h1>
+            {/* <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-8 text-center">Kokane Investment</h1> */}
       <div className="my-4">
         <Image
           src="/jayaram.png"
@@ -41,7 +41,7 @@ export default function Home() {
           Since 2005, Kokane Investment has been a trusted name in the financial market, offering a comprehensive suite of services to meet all your investment needs. We specialize in buying and selling equities, mutual funds, and equity derivatives, as well as providing expert guidance in option trading. Our team of seasoned professionals is dedicated to helping you navigate the complex world of finance and maximize your investment potential.
         </p>
         <p className="text-gray-600 mb-4">
-          At Kokane Investment, we go beyond just transactions. We offer valuable education and training programs on investing and share market trading, empowering you with the knowledge to make informed decisions. Our services also include facilitating IPOs and assisting with the dematerialization (DEMAT) of physical shares, ensuring a seamless transition to modern, electronic trading. Whether you`re a seasoned investor or just starting out, Kokane Investment is your partner in achieving financial success.
+          At Kokane Investment, we go beyond just transactions. We offer valuable education and training programs on investing and share market trading, empowering you with the knowledge to make informed decisions. Our services also include facilitating participation in IPOs and assisting with the dematerialization (DEMAT) of physical shares, ensuring a seamless transition to modern, electronic trading. Whether you`re a seasoned investor or just starting out, Kokane Investment is your partner in achieving financial success.
         </p>
       </div>
 
