@@ -34,14 +34,14 @@ export default function Home() {
         />
       </div>
 
-      {/* Our Services in English */}
-      <div className="mt-8 max-w-4xl text-center px-4">
+       {/* Our Services in English */}
+       <div className="mt-8 max-w-4xl text-center px-4">
         <h2 className="text-3xl font-semibold text-gray-800 mb-4">Our Services</h2>
         <p className="text-gray-600 mb-4">
           Since 2005, Kokane Investment has been a trusted name in the financial market, offering a comprehensive suite of services to meet all your investment needs. We specialize in buying and selling equities, mutual funds, and equity derivatives, as well as providing expert guidance in option trading. Our team of seasoned professionals is dedicated to helping you navigate the complex world of finance and maximize your investment potential.
         </p>
         <p className="text-gray-600 mb-4">
-          At Kokane Investment, we go beyond just transactions. We offer valuable education and training programs on investing and share market trading, empowering you with the knowledge to make informed decisions. Our services also include facilitating participation in IPOs and assisting with the dematerialization (DEMAT) of physical shares, ensuring a seamless transition to modern, electronic trading. Whether you`re a seasoned investor or just starting out, Kokane Investment is your partner in achieving financial success.
+          At Kokane Investment, we go beyond just transactions. We offer valuable education and training programs on investing and share market trading, empowering you with the knowledge to make informed decisions. Our services also include facilitating participation in IPOs, assisting with the dematerialization (DEMAT) of physical shares, portfolio management, loan against equities, and loan against mutual funds. Whether you're a seasoned investor or just starting out, Kokane Investment is your partner in achieving financial success.
         </p>
       </div>
 
@@ -66,6 +66,13 @@ export default function Home() {
             <span className="block sm:inline"> Unable to load the map. Please try again later.</span>
           </div>
         )}
+      </div>
+
+      {/* Address */}
+      <div className="mt-4 text-center">
+        <p className="text-gray-600">
+          Mukund Niwas, Rees, Behind ICICI Bank, Khalapur, Raigad, Maharashtra
+        </p>
       </div>
 
       {/* Contact Details */}
@@ -98,7 +105,7 @@ export default function Home() {
           २००५ पासून, कोकणे इन्व्हेस्टमेंट हे शेअर बाजारातलं एक विश्वासू नाव आहे. आम्ही तुमच्या सगळ्या गुंतवणुकीच्या गरजा पूर्ण करतो. आम्ही शेअर्स, म्युच्युअल फंड्स आणि इक्विटी डेरिव्हेटिव्हज विकत घेणं आणि विकणं यात तज्ञ आहोत. शिवाय ऑप्शन ट्रेडिंगमध्ये चांगलं मार्गदर्शन देतो. आमचा अनुभवी टीम तुम्हाला पैशाच्या जगात मदत करतो आणि तुमची गुंतवणूक वाढवायला मदत करतो.
         </p>
         <p className="text-sm md:text-base text-gray-600 mb-4">
-          कोकणे इन्व्हेस्टमेंटमध्ये, आम्ही फक्त व्यवहार करत नाही. आम्ही गुंतवणूक आणि शेअर बाजारावर शिकवणी आणि ट्रेनिंग देतो, ज्यामुळे तुम्हाला चांगले निर्णय घेता येतील. आम्ही IPO मध्ये मदत करतो आणि physical शेअर्सचं DEMAT करण्यात मदत करतो, जेणेकरून तुम्ही सहज ऑनलाइन ट्रेडिंग करू शकाल. तुम्ही जुने गुंतवणूकदार असा किंवा नवीन असा, पैसे कमवायला कोकणे इन्व्हेस्टमेंट तुमच्या पाठीशी आहे.
+          कोकणे इन्व्हेस्टमेंटमध्ये, आम्ही फक्त व्यवहार करत नाही. आम्ही गुंतवणूक आणि शेअर बाजारावर शिकवणी आणि ट्रेनिंग देतो, ज्यामुळे तुम्हाला चांगले निर्णय घेता येतील. आम्ही आयपीओ मध्ये मदत करतो आणि फिजिकल शेअर्सचं डीमॅट करण्यात मदत करतो, जेणेकरून तुम्ही सहज ऑनलाइन ट्रेडिंग करू शकाल. शिवाय आम्ही पोर्टफोलिओ मॅनेजमेंट, इक्विटीज वर लोन, आणि म्युच्युअल फंड्स वर लोन अशा सेवा सुद्धा देतो. तुम्ही जुने गुंतवणूकदार असा किंवा नवीन असा, पैसे कमवायला कोकणे इन्व्हेस्टमेंट तुमच्या पाठीशी आहे.
         </p>
       </div>
     </main>
