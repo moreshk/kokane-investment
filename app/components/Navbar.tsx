@@ -33,6 +33,11 @@ const Navbar = () => {
               भारतीय शेअर बाजारात का गुंतवणूक करावी
             </Link>
           </li>
+          <li>
+            <Link href="/stock-market-investing-trading-education" className="text-white hover:text-gray-300">
+              Stock Market Education
+            </Link>
+          </li>
         </ul>
 
         {/* Mobile menu button */}
@@ -63,6 +68,11 @@ const Navbar = () => {
             <li>
               <Link href="/why-should-i-invest-in-indian-stock-market-marathi" className="block text-white hover:text-gray-300" onClick={toggleMenu}>
                 भारतीय शेअर बाजारात का गुंतवणूक करावी
+              </Link>
+            </li>
+            <li>
+              <Link href="/stock-market-investing-trading-education" className="block text-white hover:text-gray-300" onClick={toggleMenu}>
+                Stock Market Education
               </Link>
             </li>
           </ul>

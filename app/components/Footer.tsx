@@ -43,14 +43,19 @@ const Footer = () => {
                   भारतीय शेअर बाजारात का गुंतवणूक करावी
                 </Link>
               </li>
-              <li>
+              <li className="mb-2">
                 <Link href="/options-for-beginners" className="hover:text-gray-300">
                   Options Trading for Beginners
                 </Link>
               </li>
-              <li>
+              <li className="mb-2">
                 <Link href="/options-for-beginners-marathi" className="hover:text-gray-300">
-                    ऑप्शन्स ट्रेडिंग समजून घेणे: नवशिक्यांसाठी मार्गदर्शन
+                  ऑप्शन्स ट्रेडिंग समजून घेणे: नवशिक्यांसाठी मार्गदर्शन
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link href="/stock-market-investing-trading-education" className="hover:text-gray-300">
+                  Stock Market Education
                 </Link>
               </li>
             </ul>
