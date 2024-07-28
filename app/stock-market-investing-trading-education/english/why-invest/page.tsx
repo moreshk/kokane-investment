@@ -26,6 +26,42 @@ export default function InvestingEducationPage() {
         </p>
 
         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mt-8 mb-4">
+          The Silent Thief: Inflation
+        </h2>
+
+        <p className="text-gray-800 mb-4">
+          Now, let&apos;s talk about a crucial concept that affects everyone&apos;s money: inflation. Imagine you&apos;ve saved $1,000 and hidden it under your mattress. A year passes, and you excitedly retrieve your savings, only to find that it doesn&apos;t buy as much as it did a year ago. This is inflation at work.
+        </p>
+
+        <p className="text-gray-800 mb-4">
+          Inflation is like a silent thief, slowly eroding the purchasing power of your money. Over time, the same amount of cash buys fewer goods and services. It&apos;s as if your hard-earned money is shrinking while sitting idle.
+        </p>
+
+        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mt-8 mb-4">
+          The Real Cost of Keeping Cash
+        </h2>
+
+        <p className="text-gray-800 mb-4">
+          Let&apos;s put this into perspective. If inflation averages 3% per year (a common rate in many countries), in just 10 years, $1,000 today would only have the buying power of about $744. That&apos;s like losing over $250 without spending a dime!
+        </p>
+
+        <p className="text-gray-800 mb-4">
+          This is why simply saving money isn&apos;t enough. As everything becomes more expensive over time, from groceries to housing, your savings need to grow just to maintain their value, let alone increase it.
+        </p>
+
+        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mt-8 mb-4">
+          Investing: Your Shield Against Inflation
+        </h2>
+
+        <p className="text-gray-800 mb-4">
+          This is where investing becomes not just an option, but a necessity. Investing is your best defense against inflation. When you invest wisely, your money has the potential to grow faster than the rate of inflation, actually increasing your purchasing power over time.
+        </p>
+
+        <p className="text-gray-800 mb-4">
+          For example, if you invest in a diversified stock portfolio that averages a 7% annual return (after inflation), your $1,000 could grow to about $1,967 in 10 years. That&apos;s nearly doubling your money&apos;s real value!
+        </p>
+
+        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mt-8 mb-4">
           The Business Owner&apos;s Advantage
         </h2>
 
@@ -102,6 +138,7 @@ export default function InvestingEducationPage() {
           <li className="text-gray-800">Keep the security of your regular job (your reliable tap).</li>
           <li className="text-gray-800">Build wealth over time (your growing wells).</li>
           <li className="text-gray-800">Avoid the high risks of starting your own business.</li>
+          <li className="text-gray-800">Protect your money from losing value due to inflation.</li>
         </ol>
 
         <p className="text-gray-800 mb-4">
@@ -121,7 +158,7 @@ export default function InvestingEducationPage() {
         </p>
 
         <p className="text-gray-800 mb-4">
-          So, why not start your investment journey today? Your future self will thank you for the extra &quot;water&quot; you&apos;ve stored up!
+          So, why not start your investment journey today? Your future self will thank you for the extra &quot;water&quot; you&apos;ve stored up, and for protecting your wealth against the erosive effects of inflation!
         </p>
       </article>
 
