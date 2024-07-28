@@ -27,7 +27,7 @@ function TopicCard({ title, href }: { title: string; href: string }) {
 
 const topics = [
   { title: "Why to invest?", href: "/stock-market-investing-trading-education/english/why-invest" },
-  { title: "Stock market vs Property vs Gold", href: "/stock-market-investing-trading-education/english/investment-comparison" },
+  { title: "Stock market vs Property vs Gold", href: "/stock-market-investing-trading-education/english/stock-market-vs-property-vs-gold-comparison" },
   { title: "Stock Market Basics", href: "/stock-market-investing-trading-education/english/stock-market-basics" },
   { title: "Stock trading vs Investing", href: "/stock-market-investing-trading-education/english/trading-vs-investing" },
   { title: "Different types of trading, short term vs longterm", href: "/stock-market-investing-trading-education/english/trading-types" },

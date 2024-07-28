@@ -27,7 +27,7 @@ function TopicCard({ title, href }: { title: string; href: string }) {
 
 const topics = [
   { title: "गुंतवणूक का करावी?", href: "/stock-market-investing-trading-education/marathi/why-invest" },
-  { title: "स्टॉक मार्केट विरुद्ध प्रॉपर्टी विरुद्ध सोनं", href: "/stock-market-investing-trading-education/marathi/investment-comparison" },
+  { title: "स्टॉक मार्केट विरुद्ध प्रॉपर्टी विरुद्ध सोनं", href: "/stock-market-investing-trading-education/marathi/stock-market-vs-property-vs-gold-comparison" },
   { title: "स्टॉक मार्केटची मूलतत्त्वे", href: "/stock-market-investing-trading-education/marathi/stock-market-basics" },
   { title: "स्टॉक ट्रेडिंग विरुद्ध इन्व्हेस्टिंग", href: "/stock-market-investing-trading-education/marathi/trading-vs-investing" },
   { title: "ट्रेडिंगचे विविध प्रकार, शॉर्ट टर्म विरुद्ध लाँग टर्म", href: "/stock-market-investing-trading-education/marathi/trading-types" },
