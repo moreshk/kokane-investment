@@ -122,17 +122,21 @@ export default function StockMarketBasicsPage() {
         </h2>
 
         <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mt-6 mb-3">
-          Book Value vs. Market Value
+          Face Value vs. Book Value vs. Market Value
         </h3>
 
         <ul className="list-disc pl-6 mb-4">
           <li className="text-gray-800">
-            <strong>Book Value</strong>: The initial price at which shares are issued.
-            <p className="ml-4">Example: ChaiTech issues 50,000 shares at ₹100 each, so the book value is ₹100 per share.</p>
+            <strong>Face Value</strong>: The initial price at which shares are issued.
+            <p className="ml-4">Example: ChaiTech issues 50,000 shares at ₹100 each, so the face value is ₹100 per share.</p>
+          </li>
+          <li className="text-gray-800">
+            <strong>Book Value</strong>: The company&apos;s total assets minus liabilities, divided by the number of shares.
+            <p className="ml-4">Example: If ChaiTech&apos;s assets are worth ₹60,00,000 and it has ₹10,00,000 in liabilities, with 50,000 shares, the book value is ₹100 per share. This can change over time due to factors like depreciation of assets or increase in goodwill.</p>
           </li>
           <li className="text-gray-800">
             <strong>Market Value</strong>: The price at which shares are currently trading in the stock market.
-            <p className="ml-4">Example: As ChaiTech becomes popular and profitable, people might be willing to pay ₹150 for a share that was initially worth ₹100.</p>
+            <p className="ml-4">Example: As ChaiTech becomes popular and profitable, people might be willing to pay ₹150 for a share that has a face value of ₹100.</p>
           </li>
         </ul>
 
