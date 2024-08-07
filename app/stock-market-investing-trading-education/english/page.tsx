@@ -32,6 +32,7 @@ const topics = [
   { title: "Stock trading vs Investing", href: "/stock-market-investing-trading-education/english/trading-vs-investing" },
   { title: "Different types of trading, short term vs longterm", href: "/stock-market-investing-trading-education/english/trading-types" },
   { title: "Introduction to Fundamental Analysis for Stocks", href: "/stock-market-investing-trading-education/english/fundamental-analysis" },
+  { title: "Futures, Options, PUT and CALL", href: "/stock-market-investing-trading-education/english/futures-options-put-call" },
   { title: "Introduction to Technical Analysis for Stocks", href: "/stock-market-investing-trading-education/english/technical-analysis" },
   { title: "Candlestick patterns", href: "/stock-market-investing-trading-education/english/candlestick-patterns" },
   { title: "Key Technical Indicators", href: "/stock-market-investing-trading-education/english/technical-indicators" },
@@ -43,7 +44,5 @@ const topics = [
   { title: "NFO: New Fund Offering", href: "/stock-market-investing-trading-education/english/nfo" },
   { title: "Currency markets", href: "/stock-market-investing-trading-education/english/currency-markets" },
   { title: "Commodities", href: "/stock-market-investing-trading-education/english/commodities" },
-  { title: "Futures and Options", href: "/stock-market-investing-trading-education/english/futures-and-options" },
-  { title: "What are PUT and CALL", href: "/stock-market-investing-trading-education/english/put-and-call" },
   { title: "Options: A deeper dive", href: "/stock-market-investing-trading-education/english/options-deep-dive" },
 ];

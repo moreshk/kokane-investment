@@ -32,6 +32,7 @@ const topics = [
   { title: "स्टॉक ट्रेडिंग विरुद्ध इन्व्हेस्टिंग", href: "/stock-market-investing-trading-education/marathi/trading-vs-investing" },
   { title: "ट्रेडिंगचे विविध प्रकार, शॉर्ट टर्म विरुद्ध लाँग टर्म", href: "/stock-market-investing-trading-education/marathi/trading-types" },
   { title: "स्टॉक्सच्या फंडामेंटल अॅनालिसिसची ओळख", href: "/stock-market-investing-trading-education/marathi/fundamental-analysis" },
+  { title: "फ्युचर्स ऑप्शन्स पुट आणि कॉल ", href: "/stock-market-investing-trading-education/marathi/futures-options-put-call" },
   { title: "स्टॉक्सच्या टेक्निकल अॅनालिसिसची ओळख", href: "/stock-market-investing-trading-education/marathi/technical-analysis" },
   { title: "कॅंडलस्टिक पॅटर्न्स", href: "/stock-market-investing-trading-education/marathi/candlestick-patterns" },
   { title: "महत्त्वाचे टेक्निकल इंडिकेटर्स", href: "/stock-market-investing-trading-education/marathi/technical-indicators" },
@@ -43,7 +44,5 @@ const topics = [
   { title: "एनएफओ: न्यू फंड ऑफरिंग", href: "/stock-market-investing-trading-education/marathi/nfo" },
   { title: "करन्सी मार्केट्स", href: "/stock-market-investing-trading-education/marathi/currency-markets" },
   { title: "कमोडिटीज", href: "/stock-market-investing-trading-education/marathi/commodities" },
-  { title: "फ्युचर्स आणि ऑप्शन्स", href: "/stock-market-investing-trading-education/marathi/futures-and-options" },
-  { title: "पुट आणि कॉल म्हणजे काय?", href: "/stock-market-investing-trading-education/marathi/put-and-call" },
   { title: "ऑप्शन्स: एक सखोल दृष्टिकोन", href: "/stock-market-investing-trading-education/marathi/options-deep-dive" },
 ];

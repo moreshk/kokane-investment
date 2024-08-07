@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { OptionPayoffChart } from "../components/OptionPayoffChart";
+import { OptionPayoffChart } from "../../../components/OptionPayoffChart";
 // const OptionPayoffChart = ({ type }: { type: 'call' | 'put' }) => {
 
 export default function OptionTradingExplained() {
