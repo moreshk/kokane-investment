@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-export default function MarathiEducationPage() {
+export default function EnglishEducationPage() {
   return (
     <div className="w-full min-h-screen bg-white px-4 sm:px-6 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-800">स्टॉक मार्केट शिक्षण (मराठी)</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-800">Stock Market Education (English)</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {topics.map((topic, index) => (
-            <TopicCard key={index} title={topic.title} href={topic.href} />
+            <TopicCard key={index} title={topic.title} href={topic.href} isReady={index < 7} />
           ))}
         </div>
       </div>
@@ -15,11 +15,18 @@ export default function MarathiEducationPage() {
   );
 }
 
-function TopicCard({ title, href }: { title: string; href: string }) {
+function TopicCard({ title, href, isReady }: { title: string; href: string; isReady: boolean }) {
   return (
     <Link href={href} className="block w-full">
-      <div className="bg-white border border-gray-200 shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow h-full">
+      <div className={`
+        border rounded-lg p-4 hover:shadow-lg transition-shadow h-full
+        ${isReady 
+          ? 'bg-green-100 border-green-500 shadow-md' 
+          : 'bg-gray-50 border-gray-200 shadow-sm'
+        }
+      `}>
         <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
+        {isReady && <span className="text-sm font-medium text-green-700 mt-2 inline-block">Ready</span>}
       </div>
     </Link>
   );
