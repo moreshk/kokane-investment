@@ -9,7 +9,7 @@ export default function EnglishEducationPage() {
         <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-800">Stock Market Education (English)</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {topics.map((topic, index) => (
-            <TopicCard key={index} title={topic.title} href={topic.href} isReady={index < 7} />
+            <TopicCard key={index} title={topic.title} href={topic.href} isReady={index < 8} />
           ))}
         </div>
       </div>
@@ -43,11 +43,11 @@ const topics = [
   { title: "Different types of trading, short term vs longterm", href: "/stock-market-investing-trading-education/english/trading-types" },
   { title: "Introduction to Fundamental Analysis for Stocks", href: "/stock-market-investing-trading-education/english/fundamental-analysis" },
   { title: "Futures, Options, PUT and CALL", href: "/stock-market-investing-trading-education/english/futures-options-put-call" },
+  { title: "Mutual funds", href: "/stock-market-investing-trading-education/english/mutual-funds" },
   { title: "Introduction to Technical Analysis for Stocks", href: "/stock-market-investing-trading-education/english/technical-analysis" },
   { title: "Candlestick patterns", href: "/stock-market-investing-trading-education/english/candlestick-patterns" },
   { title: "Key Technical Indicators", href: "/stock-market-investing-trading-education/english/technical-indicators" },
   { title: "Supply and Demand Zones", href: "/stock-market-investing-trading-education/english/supply-demand-zones" },
-  { title: "Mutual funds", href: "/stock-market-investing-trading-education/english/mutual-funds" },
   { title: "SIP: Systematic Investment Plan", href: "/stock-market-investing-trading-education/english/sip" },
   { title: "SWP: Systematic Withdrawal Plan", href: "/stock-market-investing-trading-education/english/swp" },
   { title: "IPO: Initial Public Offering", href: "/stock-market-investing-trading-education/english/ipo" },

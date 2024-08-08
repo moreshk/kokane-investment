@@ -7,7 +7,7 @@ export default function EnglishEducationPage() {
         <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-800">Stock Market Education (English)</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {topics.map((topic, index) => (
-            <TopicCard key={index} title={topic.title} href={topic.href} isReady={index < 7} />
+            <TopicCard key={index} title={topic.title} href={topic.href} isReady={index < 8} />
           ))}
         </div>
       </div>
@@ -40,11 +40,11 @@ const topics = [
   { title: "ट्रेडिंगचे विविध प्रकार, शॉर्ट टर्म विरुद्ध लाँग टर्म", href: "/stock-market-investing-trading-education/marathi/trading-types" },
   { title: "स्टॉक्सच्या फंडामेंटल अॅनालिसिसची ओळख", href: "/stock-market-investing-trading-education/marathi/fundamental-analysis" },
   { title: "फ्युचर्स ऑप्शन्स पुट आणि कॉल ", href: "/stock-market-investing-trading-education/marathi/futures-options-put-call" },
+  { title: "म्युच्युअल फंड्स", href: "/stock-market-investing-trading-education/marathi/mutual-funds" },
   { title: "स्टॉक्सच्या टेक्निकल अॅनालिसिसची ओळख", href: "/stock-market-investing-trading-education/marathi/technical-analysis" },
   { title: "कॅंडलस्टिक पॅटर्न्स", href: "/stock-market-investing-trading-education/marathi/candlestick-patterns" },
   { title: "महत्त्वाचे टेक्निकल इंडिकेटर्स", href: "/stock-market-investing-trading-education/marathi/technical-indicators" },
   { title: "सप्लाय आणि डिमांड झोन्स", href: "/stock-market-investing-trading-education/marathi/supply-demand-zones" },
-  { title: "म्युच्युअल फंड्स", href: "/stock-market-investing-trading-education/marathi/mutual-funds" },
   { title: "एसआयपी: सिस्टेमॅटिक इन्व्हेस्टमेंट प्लॅन", href: "/stock-market-investing-trading-education/marathi/sip" },
   { title: "एसडब्ल्यूपी: सिस्टेमॅटिक विथड्रॉल प्लॅन", href: "/stock-market-investing-trading-education/marathi/swp" },
   { title: "आयपीओ: इनिशियल पब्लिक ऑफरिंग", href: "/stock-market-investing-trading-education/marathi/ipo" },
