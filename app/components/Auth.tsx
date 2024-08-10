@@ -10,7 +10,8 @@ export default function Auth() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isConfirmed, setIsConfirmed] = useState(false)
-  const [isSignIn, setIsSignIn] = useState(false)
+  const [isSignIn, setIsSignIn] = useState(true)
+  const [isForgotPassword, setIsForgotPassword] = useState(false)
   const searchParams = useSearchParams()
   const router = useRouter()
 
@@ -40,8 +41,25 @@ export default function Auth() {
     setLoading(false)
   }
 
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    })
+    if (error) alert(error.message)
+    else alert('Check your email for the password reset link!')
+    setLoading(false)
+  }
+
   const toggleAuthMode = () => {
     setIsSignIn(!isSignIn)
+    setIsForgotPassword(false)
+  }
+
+  const toggleForgotPassword = () => {
+    setIsForgotPassword(!isForgotPassword)
+    setIsSignIn(true)
   }
 
   return (
@@ -59,14 +77,24 @@ export default function Auth() {
         onChange={(e) => setEmail(e.target.value)}
         className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
       />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
-      />
-      {isSignIn ? (
+      {!isForgotPassword && (
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+        />
+      )}
+      {isForgotPassword ? (
+        <button 
+          onClick={handleForgotPassword} 
+          className="bg-yellow-500 text-white p-2 rounded-md hover:bg-yellow-600 transition-colors disabled:opacity-50" 
+          disabled={loading}
+        >
+          Reset Password
+        </button>
+      ) : isSignIn ? (
         <button 
           onClick={handleSignIn} 
           className="bg-green-500 text-white p-2 rounded-md hover:bg-green-600 transition-colors disabled:opacity-50" 
@@ -83,12 +111,30 @@ export default function Auth() {
           Sign Up
         </button>
       )}
-      <button 
-        onClick={toggleAuthMode} 
-        className="text-blue-500 hover:text-blue-600 transition-colors"
-      >
-        {isSignIn ? "New user? Sign up" : "Existing user? Sign in"}
-      </button>
+      {!isForgotPassword && (
+        <button 
+          onClick={toggleAuthMode} 
+          className="text-blue-500 hover:text-blue-600 transition-colors"
+        >
+          {isSignIn ? "New user? Sign up" : "Existing user? Sign in"}
+        </button>
+      )}
+      {isSignIn && !isForgotPassword && (
+        <button 
+          onClick={toggleForgotPassword} 
+          className="text-blue-500 hover:text-blue-600 transition-colors"
+        >
+          Forgot password?
+        </button>
+      )}
+      {isForgotPassword && (
+        <button 
+          onClick={toggleForgotPassword} 
+          className="text-blue-500 hover:text-blue-600 transition-colors"
+        >
+          Back to Sign In
+        </button>
+      )}
     </div>
   )
 }
