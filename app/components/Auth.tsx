@@ -10,6 +10,7 @@ export default function Auth() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isConfirmed, setIsConfirmed] = useState(false)
+  const [isSignIn, setIsSignIn] = useState(false)
   const searchParams = useSearchParams()
   const router = useRouter()
 
@@ -39,6 +40,10 @@ export default function Auth() {
     setLoading(false)
   }
 
+  const toggleAuthMode = () => {
+    setIsSignIn(!isSignIn)
+  }
+
   return (
     <div className="flex flex-col space-y-4">
       {isConfirmed && (
@@ -61,14 +66,15 @@ export default function Auth() {
         onChange={(e) => setPassword(e.target.value)}
         className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
       />
-      <button 
-        onClick={handleSignIn} 
-        className="bg-green-500 text-white p-2 rounded-md hover:bg-green-600 transition-colors disabled:opacity-50" 
-        disabled={loading}
-      >
-        Sign In
-      </button>
-      {!isConfirmed && (
+      {isSignIn ? (
+        <button 
+          onClick={handleSignIn} 
+          className="bg-green-500 text-white p-2 rounded-md hover:bg-green-600 transition-colors disabled:opacity-50" 
+          disabled={loading}
+        >
+          Sign In
+        </button>
+      ) : (
         <button 
           onClick={handleSignUp} 
           className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition-colors disabled:opacity-50" 
@@ -77,6 +83,12 @@ export default function Auth() {
           Sign Up
         </button>
       )}
+      <button 
+        onClick={toggleAuthMode} 
+        className="text-blue-500 hover:text-blue-600 transition-colors"
+      >
+        {isSignIn ? "New user? Sign up" : "Existing user? Sign in"}
+      </button>
     </div>
   )
 }
