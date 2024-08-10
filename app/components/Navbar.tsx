@@ -1,13 +1,28 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Session } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
 import { supabase } from '../../lib/supabase'
 
-const Navbar = ({ session }: { session: Session | null | undefined }) => {
+const Navbar = () => {
+  const [session, setSession] = useState<Session | null>(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
+  const router = useRouter()
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -23,7 +38,7 @@ const Navbar = ({ session }: { session: Session | null | undefined }) => {
     <>
       <li>
         <Link href="/dashboard" className="text-white hover:text-gray-300" onClick={toggleMenu}>
-          Dashboard
+          My Account
         </Link>
       </li>
       <li>
@@ -49,7 +64,6 @@ const Navbar = ({ session }: { session: Session | null | undefined }) => {
         
         {/* Desktop menu */}
         <ul className="hidden md:flex space-x-4">
-          
           <li>
             <Link href="/why-should-i-invest-in-indian-stock-market" className="text-white hover:text-gray-300">
               Why Invest in Indian Stock Market

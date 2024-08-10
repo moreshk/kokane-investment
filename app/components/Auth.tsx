@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../../lib/supabase'
 import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export default function Auth() {
   const [loading, setLoading] = useState(false)
@@ -10,20 +11,22 @@ export default function Auth() {
   const [password, setPassword] = useState('')
   const [isConfirmed, setIsConfirmed] = useState(false)
   const searchParams = useSearchParams()
+  const router = useRouter()
 
   useEffect(() => {
-    // Check if the URL contains a confirmation token
     const confirmationToken = searchParams.get('confirmation_token')
     if (confirmationToken) {
       setIsConfirmed(true)
+      router.push('/dashboard')
     }
-  }, [searchParams])
+  }, [searchParams, router])
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) alert(error.message)
+    else router.push('/dashboard')
     setLoading(false)
   }
 
