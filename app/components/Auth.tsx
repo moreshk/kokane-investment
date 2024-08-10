@@ -14,6 +14,7 @@ export default function Auth() {
   const [isForgotPassword, setIsForgotPassword] = useState(false)
   const searchParams = useSearchParams()
   const router = useRouter()
+  const [message, setMessage] = useState<{ text: string; type: 'error' | 'success' } | null>(null)
 
   useEffect(() => {
     const confirmationToken = searchParams.get('confirmation_token')
@@ -27,7 +28,7 @@ export default function Auth() {
     e.preventDefault()
     setLoading(true)
     const { error } = await supabase.auth.signInWithPassword({ email, password })
-    if (error) alert(error.message)
+    if (error) setMessage({ text: error.message, type: 'error' })
     else router.push('/dashboard')
     setLoading(false)
   }
@@ -36,8 +37,8 @@ export default function Auth() {
     e.preventDefault()
     setLoading(true)
     const { error } = await supabase.auth.signUp({ email, password })
-    if (error) alert(error.message)
-    else alert('Check your email for the login link!')
+    if (error) setMessage({ text: error.message, type: 'error' })
+    else setMessage({ text: 'Check your email for the login link!', type: 'success' })
     setLoading(false)
   }
 
@@ -47,11 +48,10 @@ export default function Auth() {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset-password`,
     })
-    if (error) alert(error.message)
-    else alert('Check your email for the password reset link!')
+    if (error) setMessage({ text: error.message, type: 'error' })
+    else setMessage({ text: 'Check your email for the password reset link!', type: 'success' })
     setLoading(false)
   }
-
   const toggleAuthMode = () => {
     setIsSignIn(!isSignIn)
     setIsForgotPassword(false)
@@ -68,6 +68,13 @@ export default function Auth() {
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
           <strong className="font-bold">Thank you for confirming your email!</strong>
           <span className="block sm:inline"> You may now sign in to continue.</span>
+        </div>
+      )}
+      {message && (
+        <div className={`px-4 py-3 rounded relative ${
+          message.type === 'error' ? 'bg-red-100 border border-red-400 text-red-700' : 'bg-green-100 border border-green-400 text-green-700'
+        }`} role="alert">
+          <span className="block sm:inline">{message.text}</span>
         </div>
       )}
       <input
