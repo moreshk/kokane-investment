@@ -12,6 +12,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Kokane Investment",
   description: "Your trusted partner in financial investments since 2005",
+  icons: {
+    icon: '/logo.png',
+  },
 };
 
 export default async function RootLayout({
