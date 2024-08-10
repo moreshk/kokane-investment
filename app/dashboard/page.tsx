@@ -47,11 +47,11 @@ export default function Dashboard() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Dashboard</h1>
-        <p className="mb-4 text-center text-gray-700">Welcome, {user.email}</p>
+        {/* <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Dashboard</h1> */}
+        <h1 className="mb-4 text-xl text-center text-gray-700">Welcome, {user.email}</h1>
         
         <form onSubmit={handleUpdateProfile} className="flex flex-col space-y-4">
-          <h2 className="text-xl font-semibold mb-2 text-gray-800">Update Profile</h2>
+          {/* <h2 className="text-xl font-semibold mb-2 text-gray-800">Update Profile</h2> */}
           {message && (
             <div className={`mb-4 px-4 py-3 rounded relative ${
               message.type === 'error' ? 'bg-red-100 border border-red-400 text-red-700' : 'bg-green-100 border border-green-400 text-green-700'
