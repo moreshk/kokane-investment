@@ -5,8 +5,12 @@ import { Session } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
 import { supabase } from '../../lib/supabase'
 
-const Navbar = () => {
-  const [session, setSession] = useState<Session | null>(null)
+interface NavbarProps {
+  session: Session | null;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ session: initialSession }) => {
+  const [session, setSession] = useState<Session | null>(initialSession)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter()
 
