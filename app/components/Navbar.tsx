@@ -1,13 +1,44 @@
 'use client'
 import { useState } from 'react';
 import Link from 'next/link';
+import { Session } from '@supabase/supabase-js'
+import { useRouter } from 'next/navigation'
+import { supabase } from '../../lib/supabase'
 
-const Navbar = () => {
+const Navbar = ({ session }: { session: Session | null | undefined }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    router.push('/')
+    setIsMenuOpen(false);
+  }
+
+  const authLinks = session ? (
+    <>
+      <li>
+        <Link href="/dashboard" className="text-white hover:text-gray-300" onClick={toggleMenu}>
+          Dashboard
+        </Link>
+      </li>
+      <li>
+        <button onClick={handleSignOut} className="text-white hover:text-gray-300">
+          Sign Out
+        </button>
+      </li>
+    </>
+  ) : (
+    <li>
+      <Link href="/login" className="text-white hover:text-gray-300" onClick={toggleMenu}>
+        Login
+      </Link>
+    </li>
+  );
 
   return (
     <nav className="bg-gray-800 p-4">
@@ -18,11 +49,7 @@ const Navbar = () => {
         
         {/* Desktop menu */}
         <ul className="hidden md:flex space-x-4">
-          <li>
-            <Link href="/" className="text-white hover:text-gray-300">
-              Home
-            </Link>
-          </li>
+          
           <li>
             <Link href="/why-should-i-invest-in-indian-stock-market" className="text-white hover:text-gray-300">
               Why Invest in Indian Stock Market
@@ -38,6 +65,7 @@ const Navbar = () => {
               Stock Market Education
             </Link>
           </li>
+          {authLinks}
         </ul>
 
         {/* Mobile menu button */}
@@ -75,6 +103,7 @@ const Navbar = () => {
                 Stock Market Education
               </Link>
             </li>
+            {authLinks}
           </ul>
         </div>
       )}

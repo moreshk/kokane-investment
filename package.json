@@ -12,6 +12,8 @@
     "@heroicons/react": "^2.1.5",
     "@next/third-parties": "^14.2.5",
     "@react-google-maps/api": "^2.19.3",
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
+    "@supabase/supabase-js": "^2.45.1",
     "apexcharts": "^3.51.0",
     "axios": "^1.7.2",
     "next": "14.2.5",
