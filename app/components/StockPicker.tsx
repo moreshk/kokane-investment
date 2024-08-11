@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../../lib/supabase'
 
 type Stock = {
-  name: string;
-  symbol: string;
-}
+    name: string;
+    symbol: string;
+    openPrice?: number;
+  }
+  
 
 type Props = {
   existingPicks: string[]
@@ -36,16 +38,18 @@ export default function StockPicker({ existingPicks }: Props) {
       })
   }, [existingPicks])
 
-  const addStock = (stock: Stock) => {
+  const addStock = async (stock: Stock) => {
     if (stocks.length < 3 && !stocks.some(s => s.symbol === stock.symbol)) {
-      setStocks([...stocks, stock])
-      setInputValue('')
-      setSuggestions([])
-      setMessage(null)
+      const openPrice = await fetchStockPrice(stock.symbol);
+      const stockWithPrice = { ...stock, openPrice };
+      setStocks([...stocks, stockWithPrice]);
+      setInputValue('');
+      setSuggestions([]);
+      setMessage(null);
     } else if (stocks.length >= 3) {
-      setMessage({ text: 'You can only pick up to 3 stocks per day', type: 'error' })
+      setMessage({ text: 'You can only pick up to 3 stocks per day', type: 'error' });
     } else {
-      setMessage({ text: 'This stock is already in your picks', type: 'error' })
+      setMessage({ text: 'This stock is already in your picks', type: 'error' });
     }
   }
 
@@ -162,19 +166,24 @@ export default function StockPicker({ existingPicks }: Props) {
           </ul>
         )}
       </div>
-      <ul className="mb-4">
+      {/* <ul className="mb-4">
         {stocks.map(stock => (
           <li key={stock.symbol} className="flex justify-between items-center bg-gray-100 p-2 rounded mb-2 text-base text-gray-800">
-            <span>{stock.name} ({stock.symbol})</span>
-            <button 
-              onClick={() => removeStock(stock.symbol)}
-              className="text-red-500 hover:text-red-700"
-            >
-              Remove
-            </button>
+            <span>{stock.name}</span>
           </li>
         ))}
-      </ul>
+      </ul> */}
+
+<ul className="mb-4">
+  {stocks.map(stock => (
+    <li key={stock.symbol} className="flex justify-between items-center bg-gray-100 p-2 rounded mb-2 text-base text-gray-800">
+      <span>{stock.name}</span>
+      {stock.openPrice !== undefined && (
+        <span className="font-semibold">₹{stock.openPrice.toFixed(2)}</span>
+      )}
+    </li>
+  ))}
+</ul>
       <button 
         onClick={savePicks}
         className="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600 transition-colors disabled:opacity-50"
