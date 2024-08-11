@@ -3,36 +3,53 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../../lib/supabase'
 
+type Stock = {
+  name: string;
+  symbol: string;
+}
+
 export default function StockPicker() {
-  const [stocks, setStocks] = useState<string[]>([])
+  const [stocks, setStocks] = useState<Stock[]>([])
   const [message, setMessage] = useState<{ text: string; type: 'error' | 'success' } | null>(null)
   const [loading, setLoading] = useState(false)
   const [inputValue, setInputValue] = useState('')
+  const [suggestions, setSuggestions] = useState<Stock[]>([])
+  const [allStocks, setAllStocks] = useState<Stock[]>([])
 
-  const addStock = (symbol: string) => {
-    const trimmedSymbol = symbol.trim().toUpperCase()
-    if (trimmedSymbol && stocks.length < 3 && !stocks.includes(trimmedSymbol)) {
-      setStocks([...stocks, trimmedSymbol])
+  useEffect(() => {
+    fetch('/NSE200.csv')
+      .then(response => response.text())
+      .then(data => {
+        const parsedStocks = data.split('\n').slice(1).map(line => {
+          const [name, , symbol] = line.split(',')
+          return { name, symbol }
+        }).filter(stock => stock.name && stock.symbol)
+        setAllStocks(parsedStocks)
+      })
+  }, [])
+
+  const addStock = (stock: Stock) => {
+    if (stocks.length < 3 && !stocks.some(s => s.symbol === stock.symbol)) {
+      setStocks([...stocks, stock])
       setInputValue('')
+      setSuggestions([])
       setMessage(null)
     } else if (stocks.length >= 3) {
       setMessage({ text: 'You can only pick up to 3 stocks per day', type: 'error' })
-    } else if (stocks.includes(trimmedSymbol)) {
+    } else {
       setMessage({ text: 'This stock is already in your picks', type: 'error' })
     }
   }
 
   const removeStock = (symbol: string) => {
-    setStocks(stocks.filter(s => s !== symbol))
+    setStocks(stocks.filter(s => s.symbol !== symbol))
     setMessage(null)
   }
 
   const savePicks = async () => {
-    console.log('savePicks function called')
     setLoading(true)
     try {
       const { data: { user } } = await supabase.auth.getUser()
-      console.log('User:', user)
 
       if (!user) {
         setMessage({ text: 'User not authenticated', type: 'error' })
@@ -41,30 +58,36 @@ export default function StockPicker() {
 
       const today = new Date().toISOString().split('T')[0]
 
-      console.log('Attempting to save picks:', stocks)
-
-      const { data, error } = await supabase.from('stock_picks').insert(
+      const { error } = await supabase.from('stock_picks').insert(
         stocks.map(stock => ({
           user_id: user.id,
-          stock_symbol: stock,
+          stock_symbol: stock.symbol,
           pick_date: today
         }))
       )
 
-      if (error) {
-        console.error('Supabase error:', error)
-        throw error
-      }
-
-      console.log('Picks saved successfully:', data)
+      if (error) throw error
 
       setStocks([])
       setMessage({ text: 'Picks saved successfully!', type: 'success' })
     } catch (error) {
-        console.error('Error in savePicks:', error)
-        setMessage({ text: `Error saving picks: ${(error as Error).message || 'Unknown error'}`, type: 'error' })
-      } finally {
-        setLoading(false)
+      setMessage({ text: `Error saving picks: ${(error as Error).message || 'Unknown error'}`, type: 'error' })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setInputValue(value)
+    if (value.length > 1) {
+      const filtered = allStocks.filter(stock => 
+        stock.name.toLowerCase().includes(value.toLowerCase()) ||
+        stock.symbol.toLowerCase().includes(value.toLowerCase())
+      )
+      setSuggestions(filtered.slice(0, 5))
+    } else {
+      setSuggestions([])
     }
   }
 
@@ -78,39 +101,41 @@ export default function StockPicker() {
           <span className="block sm:inline">{message.text}</span>
         </div>
       )}
-      <div className="flex mb-4">
-        <input 
-          type="text" 
-          placeholder="Enter stock symbol"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          className="flex-grow border border-gray-300 rounded-l-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
-          onKeyPress={(e) => {
-            if (e.key === 'Enter') {
-              addStock(inputValue)
-            }
-          }}
-        />
-        <button 
-          onClick={() => addStock(inputValue)}
-          className="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600 transition-colors"
-        >
-          Add
-        </button>
-      </div>
-      <ul className="mb-4">
-        {stocks.map(stock => (
-          <li key={stock} className="flex justify-between items-center bg-gray-100 p-2 rounded mb-2">
-            {stock}
-            <button 
-              onClick={() => removeStock(stock)}
-              className="text-red-500 hover:text-red-700"
+      <div className="relative mb-4">
+      <input 
+        type="text" 
+        placeholder="Search for a stock"
+        value={inputValue}
+        onChange={handleInputChange}
+        className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+      />
+      {suggestions.length > 0 && (
+        <ul className="absolute z-10 w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg">
+          {suggestions.map(stock => (
+            <li 
+              key={stock.symbol}
+              className="p-2 hover:bg-gray-100 cursor-pointer border-b border-gray-200 last:border-b-0 text-gray-800"
+              onClick={() => addStock(stock)}
             >
-              Remove
-            </button>
-          </li>
-        ))}
-      </ul>
+              {stock.name} ({stock.symbol})
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+    <ul className="mb-4">
+  {stocks.map(stock => (
+    <li key={stock.symbol} className="flex justify-between items-center bg-gray-100 p-2 rounded mb-2 text-base text-gray-800">
+      <span>{stock.name} ({stock.symbol})</span>
+      <button 
+        onClick={() => removeStock(stock.symbol)}
+        className="text-red-500 hover:text-red-700"
+      >
+        Remove
+      </button>
+    </li>
+  ))}
+</ul>
       <button 
         onClick={savePicks}
         className="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600 transition-colors disabled:opacity-50"
@@ -118,10 +143,6 @@ export default function StockPicker() {
       >
         {loading ? 'Saving...' : 'Save Picks'}
       </button>
-      {/* Debug output */}
-      <pre className="mt-4 text-xs text-gray-500 overflow-auto">
-        {JSON.stringify({ stocks, loading, message, inputValue }, null, 2)}
-      </pre>
     </div>
   )
 }
