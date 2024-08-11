@@ -8,7 +8,11 @@ type Stock = {
   symbol: string;
 }
 
-export default function StockPicker() {
+type Props = {
+  existingPicks: string[]
+}
+
+export default function StockPicker({ existingPicks }: Props) {
   const [stocks, setStocks] = useState<Stock[]>([])
   const [message, setMessage] = useState<{ text: string; type: 'error' | 'success' } | null>(null)
   const [loading, setLoading] = useState(false)
@@ -25,8 +29,12 @@ export default function StockPicker() {
           return { name, symbol }
         }).filter(stock => stock.name && stock.symbol)
         setAllStocks(parsedStocks)
+        
+        // Set existing picks
+        const existingStocks = parsedStocks.filter(stock => existingPicks.includes(stock.symbol))
+        setStocks(existingStocks)
       })
-  }, [])
+  }, [existingPicks])
 
   const addStock = (stock: Stock) => {
     if (stocks.length < 3 && !stocks.some(s => s.symbol === stock.symbol)) {
@@ -58,6 +66,14 @@ export default function StockPicker() {
 
       const today = new Date().toISOString().split('T')[0]
 
+      // Delete existing picks for today
+      await supabase
+        .from('stock_picks')
+        .delete()
+        .eq('user_id', user.id)
+        .eq('pick_date', today)
+
+      // Insert new picks
       const { error } = await supabase.from('stock_picks').insert(
         stocks.map(stock => ({
           user_id: user.id,
@@ -68,7 +84,6 @@ export default function StockPicker() {
 
       if (error) throw error
 
-      setStocks([])
       setMessage({ text: 'Picks saved successfully!', type: 'success' })
     } catch (error) {
       setMessage({ text: `Error saving picks: ${(error as Error).message || 'Unknown error'}`, type: 'error' })
@@ -102,40 +117,40 @@ export default function StockPicker() {
         </div>
       )}
       <div className="relative mb-4">
-      <input 
-        type="text" 
-        placeholder="Search for a stock"
-        value={inputValue}
-        onChange={handleInputChange}
-        className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
-      />
-      {suggestions.length > 0 && (
-        <ul className="absolute z-10 w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg">
-          {suggestions.map(stock => (
-            <li 
-              key={stock.symbol}
-              className="p-2 hover:bg-gray-100 cursor-pointer border-b border-gray-200 last:border-b-0 text-gray-800"
-              onClick={() => addStock(stock)}
+        <input 
+          type="text" 
+          placeholder="Search for a stock"
+          value={inputValue}
+          onChange={handleInputChange}
+          className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+        />
+        {suggestions.length > 0 && (
+          <ul className="absolute z-10 w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg">
+            {suggestions.map(stock => (
+              <li 
+                key={stock.symbol}
+                className="p-2 hover:bg-gray-100 cursor-pointer border-b border-gray-200 last:border-b-0 text-gray-800"
+                onClick={() => addStock(stock)}
+              >
+                {stock.name} ({stock.symbol})
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <ul className="mb-4">
+        {stocks.map(stock => (
+          <li key={stock.symbol} className="flex justify-between items-center bg-gray-100 p-2 rounded mb-2 text-base text-gray-800">
+            <span>{stock.name} ({stock.symbol})</span>
+            <button 
+              onClick={() => removeStock(stock.symbol)}
+              className="text-red-500 hover:text-red-700"
             >
-              {stock.name} ({stock.symbol})
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-    <ul className="mb-4">
-  {stocks.map(stock => (
-    <li key={stock.symbol} className="flex justify-between items-center bg-gray-100 p-2 rounded mb-2 text-base text-gray-800">
-      <span>{stock.name} ({stock.symbol})</span>
-      <button 
-        onClick={() => removeStock(stock.symbol)}
-        className="text-red-500 hover:text-red-700"
-      >
-        Remove
-      </button>
-    </li>
-  ))}
-</ul>
+              Remove
+            </button>
+          </li>
+        ))}
+      </ul>
       <button 
         onClick={savePicks}
         className="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600 transition-colors disabled:opacity-50"
