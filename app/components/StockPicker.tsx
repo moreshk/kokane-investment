@@ -73,14 +73,27 @@ export default function StockPicker({ existingPicks }: Props) {
         .eq('user_id', user.id)
         .eq('pick_date', today)
 
-      // Insert new picks
-      const { error } = await supabase.from('stock_picks').insert(
-        stocks.map(stock => ({
+         // Fetch current prices and insert new picks
+    const picksWithPrices = await Promise.all(stocks.map(async (stock) => {
+        const openPrice = await fetchStockPrice(stock.symbol);
+        return {
           user_id: user.id,
           stock_symbol: stock.symbol,
-          pick_date: today
-        }))
-      )
+          pick_date: today,
+          open_price: openPrice
+        };
+      }));
+  
+      // Insert new picks
+    //   const { error } = await supabase.from('stock_picks').insert(
+    //     stocks.map(stock => ({
+    //       user_id: user.id,
+    //       stock_symbol: stock.symbol,
+    //       pick_date: today
+    //     }))
+    //   )
+    const { error } = await supabase.from('stock_picks').insert(picksWithPrices);
+
 
       if (error) throw error
 
@@ -89,6 +102,17 @@ export default function StockPicker({ existingPicks }: Props) {
       setMessage({ text: `Error saving picks: ${(error as Error).message || 'Unknown error'}`, type: 'error' })
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchStockPrice = async (symbol: string): Promise<number> => {
+    try {
+      const response = await fetch(`/api/stockData?symbol=${symbol}`);
+      const data = await response.json();
+      return data.price;
+    } catch (error) {
+      console.error(`Error fetching price for ${symbol}:`, error);
+      return 0; // Return 0 if unable to fetch price
     }
   }
 
