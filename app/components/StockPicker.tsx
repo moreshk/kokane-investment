@@ -25,16 +25,23 @@ export default function StockPicker({ existingPicks }: Props) {
   useEffect(() => {
     fetch('/NSE200.csv')
       .then(response => response.text())
-      .then(data => {
+      .then(async (data) => {
         const parsedStocks = data.split('\n').slice(1).map(line => {
           const [name, , symbol] = line.split(',')
           return { name, symbol }
         }).filter(stock => stock.name && stock.symbol)
         setAllStocks(parsedStocks)
         
-        // Set existing picks
-        const existingStocks = parsedStocks.filter(stock => existingPicks.includes(stock.symbol))
-        setStocks(existingStocks)
+        // Set existing picks with prices
+        const existingStocks = await Promise.all(
+          parsedStocks
+            .filter(stock => existingPicks.includes(stock.symbol))
+            .map(async (stock) => {
+              const openPrice = await fetchStockPrice(stock.symbol);
+              return { ...stock, openPrice };
+            })
+        );
+        setStocks(existingStocks);
       })
   }, [existingPicks])
 
